@@ -1,0 +1,84 @@
+show databases;
+
+create database  human;
+
+use human;
+
+create table persons(
+	id int not null,
+    first_name varchar(255) not null,
+	last_name varchar(255) not null,
+    age int
+);
+
+desc persons;
+
+insert into persons values(101,'V','Jayanth',null);
+
+alter table persons 
+add unique (age);
+
+ALTER TABLE Persons
+DROP CONSTRAINT Age;
+
+drop table persons;
+
+
+create table persons(
+    age int not null,
+    check (age >= 18 and age<23)
+);
+
+create table persons1(
+	id int not null,
+    first_name varchar(255) not null,
+	last_name varchar(255) not null,
+    age int,
+    city varchar (255) default 'coimbatore'
+);
+
+
+create table products (
+	pid int primary key,
+    pname varchar(100) not null,
+    prefno int not null unique 
+);
+
+desc products;
+
+insert into products value(101 ,"electronics",19929);
+insert into products value(102 ,"furniture",19930);
+
+alter table products 
+add primary key(id);
+
+alter table products 
+drop primary key;
+
+drop table products;
+
+create table category(
+cid int primary key,
+cname varchar(100) not null
+);
+
+insert into category values (101,'electronics'),(102,'Home App');
+
+select * from category;
+
+
+CREATE TABLE products (
+    pid int primary key,
+    pname varchar(100) NOT NULL,
+    cid int, 
+    FOREIGN KEY (cid) REFERENCES category(cid)
+);
+desc products;
+
+delete from category where cid=101;
+update
+
+insert into products 
+values (504, 'Power Bank Samsung', '64-bit encry key');
+
+select * from products;
