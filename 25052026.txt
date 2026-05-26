@@ -1,0 +1,135 @@
+use admin
+switched to db admin
+show dbs
+admin          40.00 KiB
+config         72.00 KiB
+local          68.00 KiB
+search_engine  86.94 MiB
+use mytestdb
+switched to db mytestdb
+db
+mytestdb
+db.dropDatabase()
+{ ok: 1, dropped: 'mytestdb' }
+db.createCollection("Employee")
+{ ok: 1 }
+show collections
+Employee
+db.createCollection("Department")
+{ ok: 1 }
+show collections
+Department
+Employee
+db.department.drop()
+true
+show collections
+Department
+Employee
+db.Employee.insert({name: 'nigesh', address: 'Pune'})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a145dbbc643ebeb7d0d085d')
+  }
+}
+db.Employee.insertOne({
+  name: 'nigesh',
+  address: 'Pune'
+})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a145de0c643ebeb7d0d085e')
+}
+db.Employee.insertOne({
+  name: 'rajesh',
+  address: 'Mumbai'
+})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a145e05c643ebeb7d0d085f')
+}
+db.Employee.insertMany([
+  {name: 'ujesh', address: 'Pune'},
+  {name: 'ratnor', address: 'Mumbai'}
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a145e1cc643ebeb7d0d0860'),
+    '1': ObjectId('6a145e1cc643ebeb7d0d0861')
+  }
+}
+db.Employee.find().pretty()
+{
+  _id: ObjectId('6a145dbbc643ebeb7d0d085d'),
+  name: 'nigesh',
+  address: 'Pune'
+}
+{
+  _id: ObjectId('6a145de0c643ebeb7d0d085e'),
+  name: 'nigesh',
+  address: 'Pune'
+}
+{
+  _id: ObjectId('6a145e05c643ebeb7d0d085f'),
+  name: 'rajesh',
+  address: 'Mumbai'
+}
+{
+  _id: ObjectId('6a145e1cc643ebeb7d0d0860'),
+  name: 'ujesh',
+  address: 'Pune'
+}
+{
+  _id: ObjectId('6a145e1cc643ebeb7d0d0861'),
+  name: 'ratnor',
+  address: 'Mumbai'
+}
+db.Employee.update(
+  { name: 'ujesh' },
+  { $set: { name: 'Nigger' } }
+)
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Employee.updateOne(
+  { name: 'ujesh' },
+  { $set: { name: 'Nigger' } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.Employee.save({
+  "_id": ObjectId("5b920da763cdcea45e0ac337"),
+  name: "nigru",
+  address: "Banglore"
+})
+TypeError: db.Employee.save is not a function
+db.Employee.insertOne({
+  "_id": ObjectId("5b920da763cdcea45e0ac337"),
+  name: "nigru",
+  address: "Banglore"
+})
+{
+  acknowledged: true,
+  insertedId: ObjectId('5b920da763cdcea45e0ac337')
+}
+db.Employee.deleteOne({ "name": "Nigger" })
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+mytestdb
+Selection deleted
+
+
