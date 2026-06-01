@@ -1,0 +1,57 @@
+create database test; 
+use test;
+
+create table student (sid int unique not null,sname varchar(30) not null);
+
+desc student;
+insert into student values(105,'Arthi');
+
+insert into student values(106,'Raju');
+
+create database crud;
+
+use crud;
+
+CREATE TABLE `user` (
+	`sl_no` INT(5) NULL DEFAULT NULL,
+	`name` VARCHAR(100) NULL DEFAULT NULL,
+	`email` VARCHAR(100) NULL DEFAULT NULL
+);
+
+drop table user;
+
+CREATE TABLE `user` (
+	`sl_no` INT(5) NULL DEFAULT NULL,
+	`name` VARCHAR(100) NULL DEFAULT NULL,
+	`email` VARCHAR(100) NULL DEFAULT NULL
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+now the result from the CRUD OPERATIONS
+
+
+
+com.mysql.cj.jdbc.ClientPreparedStatement: insert into user(sl_no,name,email) values ('1','jinu','jinu@gmail.com')
+com.mysql.cj.jdbc.ClientPreparedStatement: insert into user(sl_no,name,email) values ('2','jawad','jawad@gmail.com')
+com.mysql.cj.jdbc.ClientPreparedStatement: select * from user
+Sl no -22
+name -jawad2
+email -jawad2@gmail
+---------------
+Sl no -1
+name -jinu
+email -jinu@gmail.com
+---------------
+Sl no -2
+name -jawad
+email -jawad@gmail.com
+---------------
+com.mysql.cj.jdbc.ClientPreparedStatement: update user set sl_no='22',name='jawad2',email='jawad2@gmail' where sl_no='2'
+com.mysql.cj.jdbc.ClientPreparedStatement: delete from user where sl_no='1'
+
+
+
+
