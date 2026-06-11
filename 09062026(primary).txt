@@ -1,0 +1,91 @@
+
+
+localhost:27017
+
+mongosh: 127.0.0.1:27018
+mongosh: 127.0.0.1:27019
+
+>_MONGOSH
+
+
+
+use college
+
+switched to db college
+
+
+db.students.insertOne({
+  name: "Blesson",
+  rollNo: 101
+})
+
+
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a29803110ccb90989348a62')
+}
+
+
+db.students.find()
+
+
+{
+  _id: ObjectId('6a297cddcb41300a9e37ad73'),
+  name: 'Blesson',
+  rollNo: 101
+}
+{
+
+  _id: ObjectId('6a29803110ccb90989348a62'),
+  name: 'Blesson',
+  rollNo: 101
+}
+
+
+db.hello()
+
+
+{
+  topologyVersion: { processId: ObjectId('6a297a9143435ec4075e4b48'), counter: Long('6') },
+  hosts: [ 'localhost:27018', 'localhost:27019', 'localhost:27020' ],
+  setName: 'myReplSet',
+  setVersion: 1,
+  isWritablePrimary: true,
+  secondary: false,
+  primary: 'localhost:27018',
+  me: 'localhost:27018',
+  electionId: ObjectId('7fffffff0000000000000001'),
+  lastWrite: {
+    opTime: { ts: Timestamp({ t: 1781104737, i: 1 }), t: Long('1') },
+    lastWriteDate: 2026-06-10T15:18:57.000Z,
+    majorityOpTime: { ts: Timestamp({ t: 1781104737, i: 1 }), t: Long('1') },
+    majorityWriteDate: 2026-06-10T15:18:57.000Z
+  },
+  maxBsonObjectSize: 16777216,
+  maxMessageSizeBytes: 48000000,
+  maxWriteBatchSize: 100000,
+  localTime: 2026-06-10T15:19:00.604Z,
+  logicalSessionTimeoutMinutes: 30,
+  connectionId: 118,
+  minWireVersion: 0,
+  maxWireVersion: 28,
+  readOnly: false,
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781104737, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781104737, i: 1 })
+}
+
+
+rs.status().set
+myReplSet
+
+myReplSet [direct: primary] college
+
+
+
