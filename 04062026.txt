@@ -1,0 +1,532 @@
+
+
+localhost:27017
+
+
+Only Queries
+
+
+
+CollegeDB
+
+admin
+
+config
+
+db
+
+local
+
+mytestdb
+
+search_engine
+
+Welcome
+mongosh: localhost:27017
+
+>_MONGOSH
+
+use db
+switched to db db
+db.products.updateOne({ _id: 5 }, { $mul: { price: 1.1 } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.products.find({
+    _id: 5
+}, {
+    name: 1,
+    price: 1
+})
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 658.9000000000001
+}
+and third array elements in the storage array of the document _id 1:
+
+
+db.products.updateOne({
+    _id: 1
+}, {
+    $mul: {
+        "storage.0": 2,
+        "storage.1": 2,
+        "storage.2": 2
+    }
+})
+SyntaxError: Missing semicolon. (1:3)
+
+> 1 | and third array elements in the storage array of the document _id 1:
+    |    ^
+  2 | db.products.updateOne({
+  3 |     _id: 1
+  4 | }, {
+
+
+db.products.updateOne({
+    _id: 1
+}, {
+    $mul: {
+        "storage.0": 2,
+        "storage.1": 2,
+        "storage.2": 2
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.products.findOne({ _id: 1 }, { name: 1, storage: 1 })
+{
+  _id: 1,
+  name: 'xPhone',
+  storage: [
+    32,
+    64,
+    512
+  ]
+}
+
+
+db.products.updateMany({}, {
+    $mul: {
+        "spec.ram": 2
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+
+db.products.find({}, { name: 1, "spec.ram": 1 })
+{
+  _id: 1,
+  name: 'xPhone',
+  spec: {
+    ram: 8
+  }
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  spec: {
+    ram: 64
+  }
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  spec: {
+    ram: 64
+  }
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  spec: {
+    ram: 32
+  }
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  spec: {
+    ram: 8
+  }
+}
+
+
+db.products.updateOne({
+    _id: 1
+}, {
+    $unset: {
+        price: ""
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.products.find({}, { name: 1, price: 1 })
+{
+  _id: 1,
+  name: 'xPhone'
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 658.9000000000001
+}
+
+
+db.products.updateMany({}, {
+    $unset: {
+        "spec.ram": ""
+    }
+})
+
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+
+db.products.find({}, {
+    spec: 1
+})
+{
+  _id: 1,
+  spec: {
+    screen: 6.5,
+    cpu: 2.66
+  }
+}
+{
+  _id: 2,
+  spec: {
+    screen: 9.8,
+    cpu: 5.66
+  }
+}
+{
+  _id: 3,
+  spec: {
+    screen: 9.8,
+    cpu: 5.66
+  }
+}
+{
+  _id: 4,
+  spec: {
+    screen: 10.7,
+    cpu: 2.66
+  }
+}
+{
+  _id: 5,
+  spec: {
+    screen: 9.7,
+    cpu: 1.66
+  }
+}
+
+
+
+db.products.updateMany({}, { $unset: { "storage.0": "" } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+
+db.products.find({}, { "storage":1})
+{
+  _id: 1,
+  storage: [
+    null,
+    64,
+    512
+  ]
+}
+{
+  _id: 2,
+  storage: [
+    null,
+    32,
+    512
+  ]
+}
+{
+  _id: 3,
+  storage: [
+    null,
+    32,
+    128
+  ]
+}
+{
+  _id: 4,
+  storage: [
+    null,
+    32,
+    1024
+  ]
+}
+{
+  _id: 5,
+  storage: [
+    null,
+    256
+  ]
+}
+
+
+db.products.updateMany({}, {
+    $rename: {
+        nmea: "name"
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+
+
+db.products.find({}, { name: 1 })
+{
+  _id: 1,
+  name: 'xPhone'
+}
+{
+  _id: 2,
+  name: 'xTablet'
+}
+{
+  _id: 3,
+  name: 'SmartTablet'
+}
+{
+  _id: 4,
+  name: 'SmartPad'
+}
+{
+  _id: 5,
+  name: 'SmartPhone'
+}
+
+
+db.products.updateMany({}, {
+    $rename: {
+        "spec.screen": "spec.screenSize"
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+
+db.products.find({}, {
+    spec: 1
+})
+{
+  _id: 1,
+  spec: {
+    cpu: 2.66,
+    screenSize: 6.5
+  }
+}
+{
+  _id: 2,
+  spec: {
+    cpu: 5.66,
+    screenSize: 9.8
+  }
+}
+{
+  _id: 3,
+  spec: {
+    cpu: 5.66,
+    screenSize: 9.8
+  }
+}
+{
+  _id: 4,
+  spec: {
+    cpu: 2.66,
+    screenSize: 10.7
+  }
+}
+{
+  _id: 5,
+  spec: {
+    cpu: 1.66,
+    screenSize: 9.7
+  }
+}
+
+
+db.products.updateOne({
+ _id: 1
+}, 
+{
+    $rename: {
+        "spec.cpu": "cpu"
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.products.find({ _id: 1})
+{
+  _id: 1,
+  name: 'xPhone',
+  releaseDate: 2011-05-14T00:00:00.000Z,
+  spec: {
+    screenSize: 6.5
+  },
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    null,
+    64,
+    512
+  ],
+  cpu: 2.66
+}
+
+
+db.products.updateOne({
+    _id: 2
+}, {
+    $rename: {
+        "color": "storage"
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.products.find({ _id: 2 })
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  releaseDate: 2011-09-01T00:00:00.000Z,
+  spec: {
+    cpu: 5.66,
+    screenSize: 9.8
+  },
+  storage: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+
+
+db.products.updateMany(
+    {_id: 6 },
+    { $set: {price: 999} }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+
+db.products.updateMany(
+    { _id: 6 },
+    { $set: {price: 999} },
+    { upsert: true}
+)
+{
+  acknowledged: true,
+  insertedId: 6,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+
+
+db.products.find({_id:6})
+{
+  _id: 6,
+  price: 999
+}
+
+
+db.products.deleteOne({ _id: 1 })
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+
+db.products.deleteOne({})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+
+db.products.deleteMany({ price: 899 })
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+
+db.products.deleteMany({})
+{
+  acknowledged: true,
+  deletedCount: 3
+}
+
+db
+Selection deleted
+
+
