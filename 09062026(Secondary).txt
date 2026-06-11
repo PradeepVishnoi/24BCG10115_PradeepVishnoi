@@ -1,0 +1,155 @@
+
+
+localhost:27017
+
+mongosh: 127.0.0.1:27018
+mongosh: 127.0.0.1:27019
+
+>_MONGOSH
+
+
+rs.secondaryOk()
+DeprecationWarning: .setSecondaryOk() is deprecated. Use .setReadPref("primaryPreferred") instead
+Setting read preference from "primary" to "primaryPreferred"
+
+
+use college
+
+switched to db college
+
+db.students.find()
+
+
+{
+  _id: ObjectId('6a297cddcb41300a9e37ad73'),
+  name: 'Blesson',
+  rollNo: 101
+}
+{
+  _id: ObjectId('6a29803110ccb90989348a62'),
+  name: 'Blesson',
+  rollNo: 101
+}
+
+
+rs.status()
+
+
+{
+  set: 'myReplSet',
+  date: 2026-06-10T15:18:44.167Z,
+  myState: 2,
+  term: Long('1'),
+  syncSourceHost: 'localhost:27018',
+  syncSourceId: 0,
+  heartbeatIntervalMillis: Long('2000'),
+  majorityVoteCount: 2,
+  writeMajorityCount: 2,
+  votingMembersCount: 3,
+  writableVotingMembersCount: 3,
+  optimes: {
+    lastCommittedOpTime: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+    lastCommittedWallTime: 2026-06-10T15:18:37.561Z,
+    readConcernMajorityOpTime: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+    appliedOpTime: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+    durableOpTime: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+    writtenOpTime: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+    lastAppliedWallTime: 2026-06-10T15:18:37.561Z,
+    lastDurableWallTime: 2026-06-10T15:18:37.561Z,
+    lastWrittenWallTime: 2026-06-10T15:18:37.561Z
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1781104689, i: 1 }),
+  electionParticipantMetrics: {
+    votedForCandidate: true,
+    electionTerm: Long('1'),
+    lastVoteDate: 2026-06-10T15:02:26.759Z,
+    electionCandidateMemberId: 0,
+    voteReason: '',
+    lastWrittenOpTimeAtElection: { ts: Timestamp({ t: 1781103735, i: 1 }), t: Long('-1') },
+    maxWrittenOpTimeInSet: { ts: Timestamp({ t: 1781103735, i: 1 }), t: Long('-1') },
+    lastAppliedOpTimeAtElection: { ts: Timestamp({ t: 1781103735, i: 1 }), t: Long('-1') },
+    maxAppliedOpTimeInSet: { ts: Timestamp({ t: 1781103735, i: 1 }), t: Long('-1') },
+    priorityAtElection: 1,
+    newTermStartDate: 2026-06-10T15:02:26.780Z,
+    newTermAppliedDate: 2026-06-10T15:02:27.302Z
+  },
+  members: [
+    {
+      _id: 0,
+      name: 'localhost:27018',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 987,
+      optime: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+      optimeDurable: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+      optimeWritten: { ts: Timestamp({ t: 1781104717, i: 1 }), t: Long('1') },
+      optimeDate: 2026-06-10T15:18:37.000Z,
+      optimeDurableDate: 2026-06-10T15:18:37.000Z,
+      optimeWrittenDate: 2026-06-10T15:18:37.000Z,
+      lastAppliedWallTime: 2026-06-10T15:18:37.561Z,
+      lastDurableWallTime: 2026-06-10T15:18:37.561Z,
+      lastWrittenWallTime: 2026-06-10T15:18:37.561Z,
+
+
+rs.conf()
+
+
+{
+  _id: 'myReplSet',
+  version: 1,
+  term: 1,
+  members: [
+    {
+      _id: 0,
+      host: 'localhost:27018',
+      arbiterOnly: false,
+      buildIndexes: true,
+      hidden: false,
+      priority: 1,
+      tags: {},
+      secondaryDelaySecs: Long('0'),
+      votes: 1
+    },
+    {
+      _id: 1,
+      host: 'localhost:27019',
+      arbiterOnly: false,
+      buildIndexes: true,
+      hidden: false,
+      priority: 1,
+      tags: {},
+      secondaryDelaySecs: Long('0'),
+      votes: 1
+    },
+    {
+      _id: 2,
+      host: 'localhost:27020',
+      arbiterOnly: false,
+      buildIndexes: true,
+      hidden: false,
+      priority: 1,
+      tags: {},
+      secondaryDelaySecs: Long('0'),
+      votes: 1
+    }
+  ],
+  protocolVersion: Long('1'),
+  writeConcernMajorityJournalDefault: true,
+  settings: {
+    chainingAllowed: true,
+    heartbeatIntervalMillis: 2000,
+    heartbeatTimeoutSecs: 10,
+    electionTimeoutMillis: 10000,
+    catchUpTimeoutMillis: -1,
+    catchUpTakeoverDelayMillis: 30000,
+    getLastErrorModes: {},
+    getLastErrorDefaults: { w: 1, wtimeout: 0 },
+    replicaSetId: ObjectId('6a297c7743435ec4075e4b4f')
+  }
+}
+
+
+myReplSet [direct: secondary] college
+
+
