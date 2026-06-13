@@ -1,0 +1,91 @@
+
+ 
+
+##SHARD 1
+
+
+
+mongosh: 127.0.0.1:27018
+mongosh: localhost:27021
+mongosh: localhost:27011
+mongosh: localhost:27017
+mongosh: localhost:27012
+mongosh: 127.0.0.1:27019
+
+>_MONGOSH
+
+rs.initiate({
+  _id: "shard1ReplSet",
+  members: [
+    {
+      _id: 0,
+      host: "localhost:27011"
+    }
+  ]
+})
+
+
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781105985, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781105985, i: 1 })
+}
+
+
+
+shard1ReplSet [direct: primary] test
+
+
+
+
+
+
+##SHARD 2
+
+
+mongosh: 127.0.0.1:27018
+mongosh: localhost:27021
+mongosh: localhost:27011
+mongosh: localhost:27017
+mongosh: localhost:27012
+mongosh: 127.0.0.1:27019
+
+>_MONGOSH
+
+rs.initiate({
+  _id: "shard1ReplSet",
+  members: [
+    {
+      _id: 0,
+      host: "localhost:27011"
+    }
+  ]
+})
+
+
+
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781105985, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781105985, i: 1 })
+}
+
+
+shard1ReplSet [direct: primary] test
+
+
+
+
+
